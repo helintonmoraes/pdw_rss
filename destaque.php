@@ -21,7 +21,7 @@
             <blockquote>
                 <p><?php echo($noticia->noticia->conteudo) ?></p>
                 <br/>
-                <p><?php require_once 'carrocel.php';?></p>
+                <p><?php require_once 'carrocel.php'; ?></p>
             </blockquote>
 
         </div>
@@ -56,7 +56,28 @@
 
     </table>
 
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-6">
+                <form role="form">
+                    <label>Comentar notícia</label>
+                    <div class="form-group input-group">
+                        
+                        <span class="input-group-addon">@</span>
+                        <input type="text" class="form-control" placeholder="e-mail">
+                    </div>
+                    <div class="form-group">
+                        
+                        <textarea class="form-control" rows="4" placeholder="Digite aqui"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-default">Comentar</button>
+                    <button type="reset" class="btn btn-default">Limpar</button>
+                </form>
+            </div>
 
+        </div>
+
+    </div>
 </div>
 
 
