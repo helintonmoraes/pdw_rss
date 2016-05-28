@@ -7,6 +7,7 @@ include '../../cabecalho.php';
         <div class="panel-heading">
             <h1>Gestor de Notícias</h1>
         </div>
+        
         <div class="panel-body">
             <div class="row">
                 <div class="col-lg-6">
@@ -14,16 +15,16 @@ include '../../cabecalho.php';
                         <div class="form-group">
                             <label>Título</label>
                             <input class="form-control">
-                           
+
                         </div>
-                      
+
                         <div id="sandbox-container" class="form-group">
                             <label>Data</label>
                             <div class="input-group date" id="calender">
                                 <input type="text" id="calender" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                             </div>
                         </div>
-                       
+
                         <div class="form-group">
                             <label>Imagem</label>
                             <input type="file">
@@ -36,15 +37,17 @@ include '../../cabecalho.php';
                             <label>Conteúdo</label>
                             <textarea class="form-control" rows="4"></textarea>
                         </div>
-
+                        <button type="submit" class="btn btn-default">Cadastrar</button>
+                        <button type="reset" class="btn btn-default">Limpar</button>
+                        </form>
                 </div>
-                </form>
+                
             </div>
 
         </div>
 
-      
-       
+
+
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -60,7 +63,7 @@ include '../../cabecalho.php';
                 $('#calender').datepicker({
                     format: "dd/mm/yyyy",
                     language: "pt-BR"
-                    
+
                 });
             });
         </script>
