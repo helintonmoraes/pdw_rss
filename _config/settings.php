@@ -10,6 +10,10 @@
         <a class="btn btn-danger" href="../database/migration/migrate:drop.php">reset</a>
         <a class="btn btn-default" href="../index.php">Home</a>
     </h1>
+    <h1>
+
+        <a class="btn btn-warning" href="../database/crud/create-edit-noticia.php">adicionar noticia</a>
+    </h1>
 </div>
 
 <?php require_once '../rodape.php'; ?>
