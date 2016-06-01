@@ -5,7 +5,7 @@
     $id = $_GET['destaque'];
     $destaque = new Noticias();
     $noticia = $destaque->getNoticiaDetalhes($id);
-    if (!$_GET['img']) {
+    if (!@$_GET['img']) {
         $img = $noticia->img_dstq->imagem;
     } else {
         $img = $_GET['img'];

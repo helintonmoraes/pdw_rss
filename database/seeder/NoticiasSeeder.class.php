@@ -38,7 +38,7 @@ class NoticiasSeeder {
 
     function getLink() {
         $id = $this->getId();
-        $link = "http://localhost/pdw_rss/paginas/noticia-do-dia.php?nt=$id";
+        $link = "http://localhost/pdw_rss/destaque.php?destaque=$id";
         return $link;
     }
 

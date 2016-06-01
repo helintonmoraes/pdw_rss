@@ -31,7 +31,7 @@ class Migrate {
         $db->query("CREATE TABLE comentarios (id_comentario integer PRIMARY KEY,comentario text,email varchar,id_noticia integer,FOREIGN KEY(id_noticia) REFERENCES noticia (id_noticia));");
 
         $db->query("create view vwNoticiasIndex as
-                    select noticia.titulo, noticia.gravata,noticia.id_noticia, noticia.data, imagens.imagem from noticia
+                    select noticia.titulo,noticia.conteudo, noticia.link, noticia.gravata,noticia.id_noticia, noticia.data, imagens.imagem from noticia
                     inner join imagens on noticia.id_noticia = imagens.id_noticia 
                     where imagens.destaque = true
                     order by noticia.data desc"

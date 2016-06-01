@@ -1,5 +1,6 @@
 <?php
 class Imagens{
+    
     function getConexao() {
         require_once '_config/conexao.inc.php';
         return $db;

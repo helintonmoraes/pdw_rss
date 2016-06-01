@@ -1,42 +1,44 @@
 
 <?php
-include '../../cabecalho.php';
+
 ?>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.1/css/bootstrap-datepicker.css">
 <div class="container">
     <div class="col-lg-8">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h1>Gestor de Notícias</h1>
             </div>
-
+            <a href="../../teste.php"></a>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        <form role="form">
+                        <form role="form" action="../request.php" method="post">
                             <div class="form-group">
                                 <label>Título</label>
-                                <input class="form-control">
+                                <input type="text" name="titulo" class="form-control">
+                                <input type="hidden" name="class" value="Noticia" />
 
                             </div>
 
                             <div id="sandbox-container" class="form-group">
                                 <label>Data</label>
                                 <div class="input-group date" id="calender">
-                                    <input type="text" id="calender" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                    <input type="text" name="data" class="form-control"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label>Imagem</label>
-                                <input type="file">
+                                <input type="file" name="imagem">
                             </div>
                             <div class="form-group">
                                 <label>Gravata</label>
-                                <textarea class="form-control" rows="2"></textarea>
+                                <textarea name="gravata" class="form-control" rows="2"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Conteúdo</label>
-                                <textarea class="form-control" rows="4"></textarea>
+                                <textarea name="conteudo" class="form-control" rows="4"></textarea>
                             </div>
                             <button type="submit" class="btn btn-default">Cadastrar</button>
                             <button type="reset" class="btn btn-default">Limpar</button>
@@ -80,4 +82,4 @@ include '../../cabecalho.php';
 
 
 
-<?php include_once '../../rodape.php'; ?>
+

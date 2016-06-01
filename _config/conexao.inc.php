@@ -3,7 +3,7 @@
  //------------------------------Entre aqui com seus dados de banco-------------
  
  $nomeDoBanco = "pdw_rss";
- $nomeDoUsuarioDoPostgres = "jefe";
+ $nomeDoUsuarioDoPostgres = "jeferson";
  $password = "270201";
  
  //-----------------------------------------------------------------------------
