@@ -1,5 +1,8 @@
 <div class="container">
     <a class="btn btn-success"href="_config/settings.php">Configurações</a>
+    <a class="btn btn-warning"href="database/crud/create-edit-noticia.php">Add Noticias</a>
+    <a class="btn btn-warning"href="database/crud/create-edit-portal.php">Add Portal</a>
+    
     <a class="btn btn-success" href="_rss/portalNoticias.xml"><img class="imgLink" src="_img/rss.png" alt=""/></a>
 
     <?php

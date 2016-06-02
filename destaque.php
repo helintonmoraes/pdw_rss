@@ -11,6 +11,7 @@
         $img = $_GET['img'];
     }
     ?>
+    <a class="btn btn-danger"href="index.php">Home</a>
     <div class="">        
         <img src="_img/<?php echo $img ?>" style="margin: 0 auto; width: 1000px; height: 300px;filter: alpha(opacity=40)">
         <h3><?php echo($noticia->noticia->titulo) ?></h3>
