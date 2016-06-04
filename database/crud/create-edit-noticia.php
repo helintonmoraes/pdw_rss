@@ -8,6 +8,8 @@ $a = '<div class="alert alert-info" role="alert">Atenção... Todos os campos s�
 <div class="container">
     <a class="btn btn-danger"href="../../index.php">Home</a>
     <a class="btn btn-warning"href="../../_config/settings.php">Voltar</a>
+    <a class="btn btn-default" href="listar-noticias.php">Para que as noticias apareçam na Home, é necessário adicionar imagens...Clique aqui para adicionar!</a>
+
     <div class="container">    
         <div class="col-lg-8">
             <div class="panel panel-default">
@@ -41,10 +43,7 @@ $a = '<div class="alert alert-info" role="alert">Atenção... Todos os campos s�
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <label>Imagem</label>
-                                    <input type="file" name="imagem">
-                                </div>
+
                                 <div class="form-group">
                                     <label>Gravata</label>
                                     <textarea name="gravata" class="form-control" rows="2"></textarea>

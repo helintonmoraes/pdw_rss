@@ -22,10 +22,3 @@ class Request {
     }
 
 }
-
-//$api = new ReflectionClass($class);
-//$obj = new stdClass();
-//foreach ($api->getProperties() as $method) {
-//    $att = (string) $method->getName();
-//}
-//var_dump($obj);
