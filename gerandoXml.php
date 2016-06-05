@@ -13,7 +13,7 @@ $arquivo .= '<rss version="2.0">';
 $arquivo .= "<channel>";
 $arquivo .= "<title>Portal | Noticias - Você com contúdo</title>";
 $arquivo .= "<description>Trabalho da materia PDW- prof Tormen</description>";
-$arquivo .= "<link>http://localhost/pdw_rss/</link>";
+$arquivo .= "<link>http://localhost/pdw_rss/gerandoXml.php</link>";
 $arquivo .= "<language>pt-br</language>";
 
 //var_dump($noticias);
@@ -34,3 +34,5 @@ $arq = fopen("_rss/portalNoticias.xml","w+");
 
 fwrite($arq,$rss); 
 fclose($arq); 
+
+header("Location:rss/portalNoticias.xml");
