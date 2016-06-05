@@ -11,7 +11,9 @@
 
 
     $listaNoticias = new Noticias();
+    
     $noticias = $listaNoticias->getNoticiasIndex();
+    $listaNoticias->gerarRss($noticias);
     ?>
 
 

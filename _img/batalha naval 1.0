@@ -1,0 +1,37 @@
+//-------------------------------------------------------------
+        JogoClass Jogo = new JogoClass();
+        Jogo.iniciaJogo();
+        int qtdVidas = Jogo.getNumVidas();
+        Jogo.limpaTela();
+
+        while (qtdVidas > 0) {
+            Jogo.mostraMatrizNavios();
+            Jogo.solicitaInsercaoDeNavios();
+            int qtdNavios = Jogo.getQtdNavios();
+            while (qtdNavios > 0) {
+                System.out.println("Atire em uma posicao...");
+                String tiro = teclado.readLine();
+                String msg = "T" + tiro;
+                System.out.println(msg);
+                Jogo.tiro(msg);
+                qtdNavios = Jogo.getQtdNavios();
+            }
+            qtdVidas = Jogo.getNumVidas();
+            qtdVidas--;
+            Jogo.setNumVidas(qtdVidas);
+            System.out.println("!!!!!   Fim da rodada   !!!!!");
+            Jogo.limpaTela();
+            Jogo.limpaTela();
+            Jogo.mostraVidasENavios();
+            System.out.println("Todos os seus navios foram afundados!!!");
+            if (qtdVidas > 0) {
+                System.out.println("Aperte 'Enter' para continuar...");
+                Jogo.iniciaMatrizNavios();
+                String a = teclado.readLine();
+            }
+            Jogo.limpaTela();
+        }
+        System.out.println("!!!!!!------ Fim de Jogo -----!!!!!! ");
+        //---------------------------------------------------------------------
+        
+        

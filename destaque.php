@@ -1,8 +1,12 @@
 <div class="container">
     <?php
+    session_start();
+    require_once 'class/Feedback.class.php';
+    $a = "";
     include 'cabecalho.php';
     require_once 'class/Noticias.class.php';
     $id = $_GET['destaque'];
+    $_SESSION['insert_comment'] = $id;
     $destaque = new Noticias();
     $noticia = $destaque->getNoticiaDetalhes($id);
     if (!@$_GET['img']) {
@@ -37,6 +41,14 @@
 
     <hr/>
     <h1>Comentarios</h1>
+    <?php
+    if (isset($_GET['r'])) {
+        $a = new Feedback();
+        $a->getFeedback($_GET['r']);
+    } else {
+        echo $a;
+    }
+    ?>
     <table class="table table-hover">
         <tr>
         <div class="row">
@@ -56,30 +68,35 @@
         <?php endforeach; ?>
 
     </table>
-
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-6">
-                <form role="form">
+                <form role="form" action="request.php" method="post">
+                    <input type="hidden" name="class" value="Comentarios"/>
+                    <input type="hidden" name="id_noticia" value="<?php echo $_GET['destaque'] ?>"/>
+
+
                     <label>Comentar notícia</label>
                     <div class="form-group input-group">
-                        
+
                         <span class="input-group-addon">@</span>
-                        <input type="text" class="form-control" placeholder="e-mail">
+                        <input type="text" name="email" class="form-control" placeholder="e-mail">
                     </div>
                     <div class="form-group">
-                        
-                        <textarea class="form-control" rows="4" placeholder="Digite aqui"></textarea>
+
+                        <textarea class="form-control" name="comentario"rows="4" placeholder="Digite aqui"></textarea>
                     </div>
                     <button type="submit" class="btn btn-default">Comentar</button>
                     <button type="reset" class="btn btn-default">Limpar</button>
                 </form>
             </div>
 
+
         </div>
 
     </div>
 </div>
+
 
 
 

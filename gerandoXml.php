@@ -8,7 +8,7 @@ $noticias = $listaNoticias->getNoticiasIndex();
 
 
 
-$arquivo = '<?xml version="1.0" encoding="iso-8859-1"?>';
+$arquivo = '<?xml version="1.0" encoding="utf-8"?>';
 $arquivo .= '<rss version="2.0">';
 $arquivo .= "<channel>";
 $arquivo .= "<title>Portal | Noticias - Você com contúdo</title>";
@@ -34,5 +34,5 @@ $arq = fopen("_rss/portalNoticias.xml","w+");
 
 fwrite($arq,$rss); 
 fclose($arq); 
+header("Location:_rss/portalNoticias.xml");
 
-header("Location:rss/portalNoticias.xml");

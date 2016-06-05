@@ -13,6 +13,7 @@ class Noticia {
     }
 
     function insert() {
+        
         require_once 'Resposta.class.php';
         $resp = new Resposta();
         $db = $this->getConexao();
@@ -28,6 +29,7 @@ class Noticia {
             }
         }
         $link = "http://localhost/pdw_rss/destaque.php?destaque=$id->proximo";
+        $this->gravata = substr($this->conteudo, 0,200);
         $id_portal = rand(0, 20);
         $sql = $db->query("insert into noticia(id_noticia,link,titulo,data,gravata,conteudo,id_portal)"
                 . "values($id->proximo,'$link','$this->titulo','$this->data','$this->gravata','$this->conteudo',$id_portal)");

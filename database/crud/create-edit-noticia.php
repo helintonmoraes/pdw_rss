@@ -53,10 +53,7 @@ if(isset($_GET['id_noticia'])){
                                 </div>
 
 
-                                <div class="form-group">
-                                    <label>Gravata</label>
-                                    <textarea name="gravata" class="form-control" rows="2"><?php echo @$noticia->gravata;?></textarea>
-                                </div>
+                                
                                 <div class="form-group">
                                     <label>Conteúdo</label>
                                     <textarea name="conteudo" class="form-control" rows="4"><?php echo @$noticia->conteudo;?></textarea>

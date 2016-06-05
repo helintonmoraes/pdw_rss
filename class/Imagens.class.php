@@ -23,6 +23,7 @@ class Imagens {
         
         $query = "UPDATE imagens SET destaque = 'true' WHERE id_noticia = $id_noticia and id_imagem = $id_imagem";
         $this->sql($db,$query);
+        
     }
 
     function insert($nomeImagem) {

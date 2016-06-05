@@ -12,7 +12,7 @@ class Noticias {
     }
 
     function getNoticiasIndex() {
-        
+
         $db = $this->getConexao();
         //-------------------aqui pego a noticia mais nova para exibi-la no jumbotron
         $destaques = $db->query("select * from vwNoticiasIndex  order by data desc limit 1");
@@ -21,13 +21,13 @@ class Noticias {
             $jumbotron = new Jumbotron();
             $jumbotron->noticia = $noticia;
             $imagens = $db->query("select imagem,destaque from imagens where id_noticia = $noticia->id_noticia and destaque = 'true' limit 1");
-            while ($imagem = $imagens->fetch(PDO::FETCH_OBJ)) {                
+            while ($imagem = $imagens->fetch(PDO::FETCH_OBJ)) {
                 $jumbotron->imagemDestaque = $imagem;
             }
             $arrayDestaques[] = $jumbotron;
         }
 
-        
+
 //------------------------aqui pego todas as noticias do portal para exibi-la no index  -----------------------------------------------------
         $noticias = $db->query("select * from vwNoticiasIndex");
         $arrayNews = [];
@@ -134,6 +134,37 @@ class Noticias {
         }
         $resp->imagens = $array;
         return $resp;
+    }
+
+    function gerarRss($noticias) {
+
+
+        $arquivo = '<?xml version="1.0" encoding="utf-8"?>';
+        $arquivo .= '<rss version="2.0">';
+        $arquivo .= "<channel>";
+        $arquivo .= "<title>Portal | Noticias - Você com contúdo</title>";
+        $arquivo .= "<description>Trabalho da materia PDW- prof Tormen</description>";
+        $arquivo .= "<link>http://localhost/pdw_rss/_rss/portalNoticias.xml</link>";
+        $arquivo .= "<language>pt-br</language>";
+
+//var_dump($noticias);
+        $corpo = "";
+        foreach ($noticias->todas as $noticia) {
+            $corpo .= "<item>";
+            $corpo .= "<title>$noticia->titulo</title>";
+            $corpo .= "<description>$noticia->conteudo</description>";
+            $corpo .= "<link>$noticia->link</link>";
+            $corpo .= "</item>";
+        }
+
+        $rss = $arquivo . $corpo;
+
+        $rss .= "</channel></rss>";
+
+        $arq = fopen("_rss/portalNoticias.xml", "w+");
+
+        fwrite($arq, $rss);
+        fclose($arq);
     }
 
 //------------------
