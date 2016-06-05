@@ -11,13 +11,21 @@ class Comentarios{
     }
     function insert(){
         require_once 'Resposta.class.php';
+        require_once 'Validator.class.php';
         $resp = new Resposta();
         $db = $this->getConexao();
+        
         $sql = $db->query("select max(id_comentario) as id_max from comentarios");
         $id_max = $sql->fetch(PDO::FETCH_OBJ);
         $id_comentario = $id_max->id_max;
         $id_comentario++;
         $id_noticia = (int)  $this->id_noticia;
+        $validator = new Validator();
+        if(!$validator->email($this->email)){
+            $resp->status = false;
+            $resp->mensagem = "Informe um e-mail válido!";
+            return $resp;
+        }
         foreach ($this as $input){
             if($input == ""){
                 $resp->status = false;
