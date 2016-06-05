@@ -12,14 +12,23 @@ class Noticias {
     }
 
     function getNoticiasIndex() {
+        
         $db = $this->getConexao();
+        //-------------------aqui pego a noticia mais nova para exibi-la no jumbotron
         $destaques = $db->query("select * from vwNoticiasIndex  order by data desc limit 1");
         $arrayDestaques = [];
         while ($noticia = $destaques->fetch(PDO::FETCH_OBJ)) {
-//$noticia->imgDestaque = $this->getImagemDestaque($noticia->id_noticia);
-            $arrayDestaques[] = $noticia;
+            $jumbotron = new Jumbotron();
+            $jumbotron->noticia = $noticia;
+            $imagens = $db->query("select imagem,destaque from imagens where id_noticia = $noticia->id_noticia and destaque = 'true' limit 1");
+            while ($imagem = $imagens->fetch(PDO::FETCH_OBJ)) {                
+                $jumbotron->imagemDestaque = $imagem;
+            }
+            $arrayDestaques[] = $jumbotron;
         }
-//-----------------------------------------------------------------------------
+
+        
+//------------------------aqui pego todas as noticias do portal para exibi-la no index  -----------------------------------------------------
         $noticias = $db->query("select * from vwNoticiasIndex");
         $arrayNews = [];
         while ($noticia = $noticias->fetch(PDO::FETCH_OBJ)) {
@@ -93,16 +102,36 @@ class Noticias {
         $consulta = $db->query("select titulo, id_noticia from noticia where id_noticia = $id");
         $noticia = $consulta->fetch(PDO::FETCH_OBJ);
         $resp->noticia = $noticia;
-        
+
         $array = [];
         $resp->img_dstq = false;
         $consulta = $db->query("select * from imagens where id_noticia = $id");
-        while ($imagens = $consulta->fetch(PDO::FETCH_OBJ)){
+        while ($imagens = $consulta->fetch(PDO::FETCH_OBJ)) {
             $array[] = $imagens;
-            if($imagens->destaque){
+            if ($imagens->destaque) {
                 $resp->img_destaque = true;
             }
-        }       
+        }
+        $resp->imagens = $array;
+        return $resp;
+    }
+
+    function getNoticiaFormDestaque($db, $id) {
+        $resp = new DetalhesNoticia();
+
+        $consulta = $db->query("select titulo, id_noticia from noticia where id_noticia = $id");
+        $noticia = $consulta->fetch(PDO::FETCH_OBJ);
+        $resp->noticia = $noticia;
+
+        $array = [];
+        $resp->img_dstq = false;
+        $consulta = $db->query("select * from imagens where id_noticia = $id");
+        while ($imagens = $consulta->fetch(PDO::FETCH_OBJ)) {
+            $array[] = $imagens;
+            if ($imagens->destaque) {
+                $resp->img_destaque = true;
+            }
+        }
         $resp->imagens = $array;
         return $resp;
     }
@@ -117,5 +146,12 @@ class DetalhesNoticia {
     public $imagens;
     public $qtd_img;
     public $img_dstq;
+
+}
+
+class Jumbotron {
+
+    public $noticia;
+    public $imagemDestaque;
 
 }

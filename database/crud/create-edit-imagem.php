@@ -15,7 +15,7 @@ $img->setId_noticia($_GET['id_noticia']);
         <div class="form-group">
             <hr/>
             <?php echo "<h1>" . $noticia->noticia->titulo . "</h1>"; ?>
-            <a class="btn btn-primary"href="definir-img-destaque.php?id_noticia=<?php echo $_GET['id_noticia'] ?>">Definir imagem destaque</a>
+            <a class="btn btn-primary"href="../../definir-img-destaque.php?id_noticia=<?php echo $_GET['id_noticia'] ?>">Definir imagem destaque</a>
 
             <hr/>
             <label for="exampleInputEmail1">Selecione uma Imagem</label>

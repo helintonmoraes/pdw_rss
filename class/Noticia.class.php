@@ -37,4 +37,47 @@ class Noticia {
         return $resp;
     }
 
+    function getNoticia($id) {
+        require_once '../../_config/conexao.inc.php';
+        $id = (int) $id;
+        $sql = $db->query("select * from noticia where id_noticia = $id");
+        $resp = $sql->fetch(PDO::FETCH_OBJ);
+        return $resp;
+    }
+
+    function delete($id_noticia) {
+        $db = $this->getConexao();
+        $id_noticia = (int) $id_noticia;
+
+        $query = "delete  from imagens where id_noticia = $id_noticia";
+        $sql = $db->query($query);
+        $sql->fetch();
+        $query = "delete  from comentarios where id_noticia = $id_noticia";
+        $sql = $db->query($query);
+        $sql->fetch();
+        $query = "delete  from noticia where id_noticia = $id_noticia";
+        $sql = $db->query($query);
+        $sql->fetch();
+    }
+
+    function update($post) {
+        require_once 'Resposta.class.php';
+        $id_noticia = (int) $post['id_noticia'];
+        $link = $post['link'];
+        $conteudo = $post['conteudo'];
+        $titulo = $post['titulo'];
+        $data = $post['data'];
+        $gravata = $post['gravata'];
+       
+        $db = $this->getConexao();
+        $sql = $db->query("update noticia set link = '$link', conteudo = '$conteudo', titulo = '$titulo', data = '$data' ,gravata = '$gravata' where id_noticia = $id_noticia");
+        
+        $sql->fetch();
+        $resp = new Resposta();
+        $resp->status = true;
+        $resp->mensagem = "Conteudo alterado com sucesso!";
+        return $resp;
+        
+    }
+
 }
