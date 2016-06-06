@@ -77,7 +77,7 @@ if(isset($_GET['id_noticia'])){
 
 <!-- Referência do arquivo JS do plugin após carregar o jquery -->
 <!-- Datepicker -->
-
+<?php require_once '../../rodape.php';?>
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 

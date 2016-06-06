@@ -32,5 +32,46 @@ class Portal {
         $resp->status = true;
         return $resp;
     }
+    
+    function getPortal(){
+        require '../../_config/conexao.inc.php';
+        $query = "select * from portal";
+        $portais = $this->sql($db, $query);
+        return $portais;
+    }
+    
+    function getPortalById($id){
+        require '../../_config/conexao.inc.php';
+        require_once 'Resposta.inc.php';
+        $resp = new Resposta();
+        $sql = $db->query("select * from noticia where id_portal = $id");
+        $array = [];
+        while ($noticia = $sql->fetch(PDO::FETCH_OBJ)){
+            $array[] = $noticia;
+        }
+        if(!$noticia){
+            $resp->status = false;
+            $resp->mensagem = "Nenhum registro encontrado";
+        }else{
+            $resp->status = true;
+            $resp->valorRetorno = $array;
+        }
+        return $resp;
+    }
+    
+    function sql($db,$query){
+        $sql = $db->query("$query");
+        $array = [];
+        while ($result = $sql->fetch(PDO::FETCH_OBJ)){
+            $array[] = $result;
+        }        
+        return $array;
+    }
+    
+    
+    
 
 }
+?>
+
+<a href="Resposta.class.php"></a>
