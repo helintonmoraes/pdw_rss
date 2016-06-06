@@ -20,7 +20,9 @@ class Comentarios{
         $id_comentario = $id_max->id_max;
         $id_comentario++;
         $id_noticia = (int)  $this->id_noticia;
+        //Inserindo a classe de validações
         $validator = new Validator();
+        //Passando o método e-mail
         if(!$validator->email($this->email)){
             $resp->status = false;
             $resp->mensagem = "Informe um e-mail válido!";

@@ -5,7 +5,7 @@ class Noticias {
     public $destaque;
     public $imgDestaque;
     public $todas = [];
-
+    
     function getConexao() {
         require_once '_config/conexao.inc.php';
         return $db;
@@ -15,7 +15,7 @@ class Noticias {
 
         $db = $this->getConexao();
         //-------------------aqui pego a noticia mais nova para exibi-la no jumbotron
-        $destaques = $db->query("select * from vwNoticiasIndex  order by data desc limit 1");
+        $destaques = $db->query("select * from vwNoticiasIndex order by data desc limit 1");
         $arrayDestaques = [];
         while ($noticia = $destaques->fetch(PDO::FETCH_OBJ)) {
             $jumbotron = new Jumbotron();
@@ -39,6 +39,36 @@ class Noticias {
         $this->destaque = $arrayDestaques;
 
 
+        return $this;
+    }
+        function getNoticiasBusca() {
+
+        $db = $this->getConexao();
+        //-------------------aqui pego a noticia mais nova para exibi-la no jumbotron
+        $destaques = $db->query("select * from vwNoticiasIndex  order by data desc limit 1");
+        $arrayDestaques = [];
+        while ($noticia = $destaques->fetch(PDO::FETCH_OBJ)) {
+            $jumbotron = new Jumbotron();
+            $jumbotron->noticia = $noticia;
+            $imagens = $db->query("select imagem,destaque from imagens where id_noticia = $noticia->id_noticia and destaque = 'true' limit 1");
+            while ($imagem = $imagens->fetch(PDO::FETCH_OBJ)) {
+                $jumbotron->imagemDestaque = $imagem;
+            }
+            $arrayDestaques[] = $jumbotron;
+        }
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $parametro = '%'.$_POST['filtro'].'%';
+    //------------------------aqui pego todas as noticias do portal para exibi-la no index  -----------------------------------------------------
+            $noticias = $db->query("select * from vwNoticiasIndex where titulo ilike '$parametro'");
+            $arrayNews = [];
+            while ($noticia = $noticias->fetch(PDO::FETCH_OBJ)) {
+                $arrayNews[] = $noticia;
+            }
+    //----------------------------------------------------------------------------
+            $this->todas = $arrayNews;
+            $this->destaque = $arrayDestaques;
+
+        }
         return $this;
     }
 
