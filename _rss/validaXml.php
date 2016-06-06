@@ -1,8 +1,16 @@
 <?php
+libxml_use_internal_errors(true);
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+$objDom = new DomDocument();
 
+$objDom->load("portalNoticias.xml");
+
+if (!$objDom->schemaValidate("portalNoticias.xsd")) {
+        $arrayAllErrors = libxml_get_errors();
+            print_r($arrayAllErrors);
+
+}else {
+    
+            echo "XML obedece às regras definidas no arquivo XSD!";
+
+}
