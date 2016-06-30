@@ -2,11 +2,21 @@
 require_once 'cabecalho.php';
 require_once 'class/Noticias.class.php';
 $listaNoticias = new Noticias();
-$noticias = $listaNoticias->getNoticiasIndex();
+if($_SERVER['REQUEST_METHOD']=='POST'){
+    $noticias = $listaNoticias->getNoticiasBusca();
+}
+else{
+    $noticias = $listaNoticias->getNoticiasIndex();
+}
 //var_dump($noticias);
 ?>
+
 <div class="container">
     <a class="btn btn-danger"href="index.php">Home</a>
+    <form method="POST" action="">
+        <input class="form-control" style="float:left;width:60%" type="text" name="filtro" placeholder="Buscar Notícia">
+        <input class="form-control"style="float:left;width:10%;"type="submit" value="Procurar">
+    </form>
     <table class="table table-hover">
         <tr>
             <th>Imagem</th>            
